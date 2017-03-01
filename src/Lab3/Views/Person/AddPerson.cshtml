@@ -1,0 +1,42 @@
+﻿@model Lab3.Models.Person
+
+<h2>Add a Person</h2>
+
+<form asp-action="AddPerson" method="post">
+	<div class="form-horizontal">
+		<h4>Person</h4>
+		<hr />
+		<div class="form-group">
+			<label class="control-label col-md-2" asp-for="FirstName">First Name</label>
+			<div class="col-md-10">
+				<input class="form-control" type="text" id="FirstName" name="FirstName" placeholder="First" />
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" asp-for="LastName">Last Name</label>
+			<div class="col-md-10">
+				<input class="form-control" type="text" id="LastName" name="LastName" placeholder="Last"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" asp-for="Birthday">Birthday</label>
+			<div class="col-md-10">
+				<input class="form-control" type="text" id="Birthday" name="Birthday" placeholder="mm/dd/yyyy" />
+			</div>
+		</div>
+
+		
+		
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Save" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+	
+</form>
+
+
+
+@*<span class="text-danger field-validation-valid" data-valmsg-for="Price" data-valmsg-replace="true"></span>*@

@@ -1,0 +1,35 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+
+	
+	var time = DateTime.Now.Hour;
+	var message = "";
+	var daysTil2018 = 365 - DateTime.Now.DayOfYear;
+
+	DateTime dt = DateTime.Now;
+
+
+	if (time < 12)
+	{
+		message = "Good Morning!";
+	}
+	if (time > 18)
+	{
+
+		message = "Good Evening!";
+	}
+	else
+	{ message = "Good Afternoon!"; }
+
+
+}
+
+<h2>@message <br />
+	The time is @String.Format("{0:t}", dt) on  @String.Format("{0:D}", dt)  <br />  
+	@daysTil2018 more days until 2018
+	</h2>
+
+<a asp-action="ShowPerson" asp-controller="Person" class="btn btn-info">See a sample person</a>
+<a asp-controller="Person" class="btn btn-info">See a list of people</a>
+<a asp-action="AddPerson" asp-controller="Person" class="btn btn-info">Add a person</a>
+

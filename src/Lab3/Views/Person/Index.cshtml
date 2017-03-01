@@ -1,0 +1,23 @@
+﻿@model List<Lab3.Models.Person>
+
+<h1>Person List</h1>
+
+<table class="table">
+	<tr>
+		<td>
+			First Name ID
+		</td>
+		<td>Last Name</td>
+		<td>Birthday</td>
+		
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.FirstName</td>
+			<td>@item.LastName</td>
+			<td>@item.Birthday</td>
+			
+		</tr>
+	}
+</table>
