@@ -8,8 +8,10 @@ namespace Lab3.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name, int number)
         {
+            ViewData["UserName"] = name;
+            ViewData["Usernum"] = number;
             return View();
         }
 

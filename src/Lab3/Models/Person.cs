@@ -5,7 +5,7 @@ namespace Lab3.Models
 {
 	public class Person
 	{
-
+         public int PersonID { get; set; }
 		[Required(ErrorMessage ="Please enter your first name.")]
 		[StringLength(20, MinimumLength =2, ErrorMessage ="Enter a name with 2-25 characters.")]
 		public string FirstName { get; set; }

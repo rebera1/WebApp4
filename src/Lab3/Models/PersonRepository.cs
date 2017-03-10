@@ -7,15 +7,23 @@ namespace Lab3.Models
 {
 	public class PersonRepository
 	{
-		public List<Person> PersonList { get; set; }
+
+        private readonly ApplicationDbContext _context;
+
+        public PersonRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        public List<Person> PersonList { get; set; }
 
 
 		public PersonRepository()
 		{
 			PersonList = new List<Person>();
 
-			Person p = new Person
-			{
+            Person p = new Person
+            {
+                PersonID = 1,
 				FirstName = "Allison",
 				LastName = "Reber",
 				Birthday = "10/07/1994",
@@ -25,8 +33,9 @@ namespace Lab3.Models
 			PersonList.Add(p);
 
 
-			Person o = new Person
-			{
+            Person o = new Person
+            {
+                PersonID = 2,
 				FirstName = "Ryan",
 				LastName = "McDonagh",
 				Birthday = "06/13/1989",
@@ -37,6 +46,7 @@ namespace Lab3.Models
 
 			Person z = new Person
 			{
+                PersonID = 3,
 				FirstName = "Adrianna",
 				LastName = "Boucher",
 				Birthday = "05/31/1995",
@@ -49,7 +59,10 @@ namespace Lab3.Models
 
 		public void Add(Person person)
 		{
-			PersonList.Add(person);
+            //PersonList.Add(person);
+
+            _context.Add(person);
+            _context.SaveChanges();
 		}
 	}
 
