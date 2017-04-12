@@ -4,9 +4,10 @@
 
 <table class="table">
 	<tr>
-		<td>
-			First Name ID
-		</td>
+		@*<td>
+			Person ID
+		</td>*@
+        <td>First Name</td>
 		<td>Last Name</td>
 		<td>Birthday</td>
 		
@@ -14,10 +15,24 @@
 	@foreach (var item in Model)
 	{
 		<tr>
+            @*item.PersonID*@
+            <td><a asp-action="Details" asp-route-id="@item.PersonID">@item.FirstName</a></td>
 			<td>@item.FirstName</td>
 			<td>@item.LastName</td>
 			<td>@item.Birthday</td>
-			
+
+            <td><a asp-action="Details" asp-route-id="@item.PersonID">Details</a></td>
+            <td><a asp-action="EditPerson" asp-route-id="@item.PersonID">Edit</a></td>
+            <td><a asp-action="DeletePerson" asp-route-id="@item.PersonID">Delete</a></td>
 		</tr>
-	}
+
+
+
+      
+      
+    }
 </table>
+
+<div>
+    @Html.ActionLink("Add Person", "AddPerson")
+</div>

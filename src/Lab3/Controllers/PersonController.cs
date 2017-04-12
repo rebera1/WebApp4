@@ -8,28 +8,28 @@ using Lab3.Models;
 
 namespace Lab3.Controllers
 {
-	public class PersonController : Controller
-	{
+    public class PersonController : Controller
+    {
 
-        private PersonRepository repo;
+        //private PersonRepository repo;
 
         private readonly ApplicationDbContext _context;
 
         public PersonController(ApplicationDbContext context)
         {
             _context = context;
-            repo = new PersonRepository();
+            //repo = new PersonRepository();
         }
 
-		public IActionResult Index()
-		{
-            
-			return View(_context.Persons.ToList());
-		}
+        public IActionResult Index()
+        {
 
-		
-		public IActionResult ShowPerson(int? id)
-		{
+            return View(_context.Persons.ToList());
+        }
+
+
+        public IActionResult ShowPerson(int? id)
+        {
             Person per;
             if (id == null)
             {
@@ -45,10 +45,10 @@ namespace Lab3.Controllers
             else
             {
                 per = _context.Persons.SingleOrDefault(p => p.PersonID == id);
-            } 
+            }
 
-			return View(per);
-		}
+            return View(per);
+        }
 
         public IActionResult Details(int? id)
         {
@@ -67,30 +67,41 @@ namespace Lab3.Controllers
 
 
         public IActionResult AddPerson()
-		{
-			return View();
-		}
+        {
+            return View();
+        }
 
-		[HttpPost]
-		public IActionResult AddPerson(Person person)
-		{
-			if (ModelState.IsValid)
-			{
+        [HttpPost]
+        public IActionResult AddPerson(Person person)
+        {
+            if (ModelState.IsValid)
+            {
                 //repo.Add(person);
 
-               _context.Add(person);
+                _context.Add(person);
                 _context.SaveChanges();
-             
 
 
-				return RedirectToAction("Index");
 
-			}
-			else
-			{
-				return View(person);
-			}
-		}
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                return View(person);
+            }
+        }
+
+        public IActionResult EditPerson(int id)
+        {
+
+            var person = _context.Persons.SingleOrDefault(p => p.PersonID == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            return View(person);
+        }
 
         [HttpPost]
         public IActionResult EditPerson(int id, Person person)
@@ -103,5 +114,21 @@ namespace Lab3.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+      
+        [HttpPost]
+        public IActionResult DeletePerson(int id, Person person)
+        {
+            if (id != person.PersonID)
+            {
+                return NotFound();
+            }
+
+            _context.Persons.Remove(person);
+                _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
